@@ -1,9 +1,18 @@
 import openpyxl as ox
 from DB_Feature_Settings import Add_Feature_Headers, Clean_Action
+import Player_Settings as P
+
 
 #GLOBALS
 Turn_Player = ""
 Turn_Count = 0
+
+#Create Players
+P1 = P.Player()
+P2 = P.Player()
+
+P1.set_Deck_Size(40)
+P2.set_Deck_Size(41)
 
 # Read the Dueling Book Log Excel
 wb = ox.load_workbook("Db_Test.xlsx")
