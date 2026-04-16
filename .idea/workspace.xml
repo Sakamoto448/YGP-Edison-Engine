@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5e7d540-815f-45fe-b05b-e6afabc90248" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Player_Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/YGP-Edison-Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/YGP-Edison-Engine.iml" afterDir="false" />
+    <list default="true" id="e5e7d540-815f-45fe-b05b-e6afabc90248" name="Changes" comment="Added the Player Class. &#10;Setting P1 and P2 Player Objects.&#10;Added Increase and Decrease Functions for each element in the class.&#10;&#10;These are the default values for the class:&#10;    Hand_Size = 0&#10;    Deck_Size = 0&#10;    Gy = 0&#10;    Banishment = 0&#10;    Monster_on_Field = 0&#10;    Highest_Atk_on_Field = 0&#10;    Backrow_on_Field = 0&#10;    Face_up_Backrow = 0&#10;    Total_Atk_on_Field = 0&#10;    Life_Points = 8000&#10;    Total_Cards = Hand_Size + Monster_on_Field + Backrow_on_Field">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB_Extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/DB_Extract.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Db_Test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Db_Test.xlsx" afterDir="false" />
@@ -51,7 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.DB_Extract.executor": "Debug",
+    "Python.DB_Extract.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
@@ -59,6 +57,7 @@
     "git-widget-placeholder": "Add-Player-Class",
     "ignore.virus.scanning.warn.message": "true",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -78,6 +77,15 @@
       <updated>1776035313258</updated>
       <workItem from="1776035314489" duration="2952000" />
     </task>
+    <task id="LOCAL-00001" summary="Added the Player Class. &#10;Setting P1 and P2 Player Objects.&#10;Added Increase and Decrease Functions for each element in the class.&#10;&#10;These are the default values for the class:&#10;    Hand_Size = 0&#10;    Deck_Size = 0&#10;    Gy = 0&#10;    Banishment = 0&#10;    Monster_on_Field = 0&#10;    Highest_Atk_on_Field = 0&#10;    Backrow_on_Field = 0&#10;    Face_up_Backrow = 0&#10;    Total_Atk_on_Field = 0&#10;    Life_Points = 8000&#10;    Total_Cards = Hand_Size + Monster_on_Field + Backrow_on_Field">
+      <option name="closed" value="true" />
+      <created>1776297171537</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776297171537</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +101,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added the Player Class. &#10;Setting P1 and P2 Player Objects.&#10;Added Increase and Decrease Functions for each element in the class.&#10;&#10;These are the default values for the class:&#10;    Hand_Size = 0&#10;    Deck_Size = 0&#10;    Gy = 0&#10;    Banishment = 0&#10;    Monster_on_Field = 0&#10;    Highest_Atk_on_Field = 0&#10;    Backrow_on_Field = 0&#10;    Face_up_Backrow = 0&#10;    Total_Atk_on_Field = 0&#10;    Life_Points = 8000&#10;    Total_Cards = Hand_Size + Monster_on_Field + Backrow_on_Field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the Player Class. &#10;Setting P1 and P2 Player Objects.&#10;Added Increase and Decrease Functions for each element in the class.&#10;&#10;These are the default values for the class:&#10;    Hand_Size = 0&#10;    Deck_Size = 0&#10;    Gy = 0&#10;    Banishment = 0&#10;    Monster_on_Field = 0&#10;    Highest_Atk_on_Field = 0&#10;    Backrow_on_Field = 0&#10;    Face_up_Backrow = 0&#10;    Total_Atk_on_Field = 0&#10;    Life_Points = 8000&#10;    Total_Cards = Hand_Size + Monster_on_Field + Backrow_on_Field" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/YGP_Edison_Engine$DB_Extract.coverage" NAME="DB_Extract Coverage Results" MODIFIED="1776035593955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

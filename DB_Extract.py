@@ -20,28 +20,27 @@ ws = wb.worksheets[0]
 
 #This worksheet will have the setup with all the data
 wb.create_sheet(title='Db_Log', index=None)
-ws1= wb['Db_Log']
+ws1 = wb['Db_Log']
 ws1.append(Add_Feature_Headers())
 
 # Get DB Log Action Length
-col_length = int(len(ws['A:A']))
+Log_length = int(len(ws['A:A']))
 
 # The Check color of the Text in cell, Looking for:
 # Blue: FF0000FF
 # Red:  FFFF0000
 
-
 # Add what Player is each action
-for row in range(1,col_length+1):
+for row in range(1,Log_length+1):
     r = str(row)
     Check_row = 'A' + r
-    current_row = 'B' + r
-
-    #Move DB Log to Db_Log Sheet
-    Temp = ws1.cell(row + 1, 1, value=ws[Check_row].value)
+    #current_row = 'B' + r
 
     #Value of the Action (Cell)
     Action = Clean_Action(ws[Check_row].value)
+
+    #Move Action to Db_Log Sheet
+    ws1.cell(row + 1, 1, value=Action)
 
     #Color of the Action (Cell)
     Player = ws[Check_row].font.color.rgb
@@ -60,14 +59,36 @@ for row in range(1,col_length+1):
         if Action.lower() == 'Chose to go first'.lower():
             Turn_Player = 'Player1'
 
+        # Game State Actions:
+        if Action.lower() == 'Drew a card'.lower():
+            P1.Increase_Hand_Size(1)
+            P1.Decrease_Deck_Size(1)
+
+#-------------------------------------------------------------------------------------------------#
+
     #Red (Player 2)
     if Player == 'FFFF0000':
         #ws[current_row] = 'Player2'
         ws1.cell(row + 1, 4, value=0)
         ws1.cell(row + 1, 5, value=1)
 
+        #Turn Player
         if Action.lower() == 'Chose to go first'.lower():
             Turn_Player = 'Player2'
+
+        # Game State Actions:
+        if Action.lower() == 'Drew a card'.lower():
+            P2.Increase_Hand_Size(1)
+            P2.Decrease_Deck_Size(1)
+
+    #Keep track of Turn Player until the end there turn
+
+    if Turn_Player == 'Player1':
+        ws1.cell(row + 1, 6, value=1)
+        ws1.cell(row + 1, 7, value=0)
+    else:
+        ws1.cell(row + 1, 6, value=0)
+        ws1.cell(row + 1, 7, value=1)
 
     if Action.lower() == 'Ended turn'.lower():
         if Turn_Player == 'Player1':
@@ -77,14 +98,15 @@ for row in range(1,col_length+1):
             Turn_Player = 'Player1'
             Turn_Count += 1
 
-    #Keep track of Turn Player until the end there turn
-    if Turn_Player == 'Player1':
-        ws1.cell(row + 1, 6, value=1)
-        ws1.cell(row + 1, 7, value=0)
-    else:
-        ws1.cell(row + 1, 6, value=0)
-        ws1.cell(row + 1, 7, value=1)
+    #Current Game State
 
+    # Hand Size
+    ws1.cell(row + 1, 8, value=P1.Hand_Size)
+    ws1.cell(row + 1, 9, value=P2.Hand_Size)
+
+    # Deck Size
+    ws1.cell(row + 1, 8, value=P1.Deck_Size)
+    ws1.cell(row + 1, 9, value=P2.Deck_Size)
 
 # Save the file
 wb.save("Db_Test.xlsx")
