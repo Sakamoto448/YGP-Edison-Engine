@@ -24,11 +24,6 @@ def Clean_Action (Action):
             return Action[1:]
 
 
-
-def Actions(Action):
-    #if "Drew a card".lower() in Action.lower():
-    return
-
 def Player_Action(ws1,row,Player):
 
     # Mark 1 for Player Action, 0 for not there Action based on Text Color
