@@ -16,4 +16,4 @@ Collect DB Match/Game logs
 
 Step 2:
 Scrape the Logs from DB and analyze the text adjusting
-for each action that was made
+for each action that was made.
