@@ -10,6 +10,7 @@ class Player():
     Total_Atk_on_Field = 0
     Life_Points = 8000
     Total_Cards = Hand_Size + Monster_on_Field + Backrow_on_Field
+    Went_First = 0
 
     def Increase_Hand_Size(self, count):
         self.Hand_Size = self.Hand_Size + count
@@ -70,3 +71,24 @@ class Player():
 
     def set_Deck_Size(self,size):
         self.Deck_Size = size
+
+    def set_Going_First(self):
+        self.Went_First = 1
+
+    def new_match(self,size):
+        self.Life_Points = 8000
+        self.Deck_Size = size
+        self.Hand_Size = 0
+        self.Gy = 0
+        self.Banishment = 0
+        self.Backrow_on_Field = 0
+        self.Highest_Atk_on_Field = 0
+        self.Monster_on_Field = 0
+        self.Face_up_Backrow = 0
+        self.Total_Atk_on_Field = 0
+        self.Total_Cards = 0
+        self.Went_First = 0
+
+
+
+

@@ -1,18 +1,23 @@
 import openpyxl as ox
 from DB_Feature_Settings import Add_Feature_Headers, Clean_Action
 import Player_Settings as P
+import regex as re
 
 
 #GLOBALS
 Turn_Player = ""
 Turn_Count = 0
+P1Deck = 40
+P2Deck = 41
+# Blue (0) Red(1)
+Went_First = 0
 
 #Create Players
 P1 = P.Player()
 P2 = P.Player()
 
-P1.set_Deck_Size(40)
-P2.set_Deck_Size(41)
+P1.set_Deck_Size(P1Deck)
+P2.set_Deck_Size(P2Deck)
 
 # Read the Dueling Book Log Excel
 wb = ox.load_workbook("Db_Test.xlsx")
@@ -60,9 +65,30 @@ for row in range(1,Log_length+1):
             Turn_Player = 'Player1'
 
         # Game State Actions:
+
+        # Draw a card from Deck
         if Action.lower() == 'Drew a card'.lower():
             P1.Increase_Hand_Size(1)
             P1.Decrease_Deck_Size(1)
+
+        # Life Points
+            # Increase LP
+        if re.search("^Gained.*LP$",Action):
+            LP =int(Action[7:11])
+            P1.Increase_Life_Points(LP)
+
+            # Decrease LP
+        if re.search("^Lost.*LP$",Action):
+            LP =int(Action[5:9])
+            P1.Decrease_Life_Points(LP)
+
+            # Set that this player is going 1st
+        if Action.lower() == 'Chose to go first'.lower():
+            P1.set_Going_First()
+
+
+
+
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -77,12 +103,29 @@ for row in range(1,Log_length+1):
             Turn_Player = 'Player2'
 
         # Game State Actions:
+            # Draw a card from Deck
         if Action.lower() == 'Drew a card'.lower():
             P2.Increase_Hand_Size(1)
             P2.Decrease_Deck_Size(1)
 
-    #Keep track of Turn Player until the end there turn
+        # Life Points
+            #Increase LP
+        if re.search("^Gained.*LP$",Action):
+            LP =int(Action[7:11])
+            P2.Increase_Life_Points(LP)
 
+            #Decrease LP
+        if re.search("^Lost.*LP$",Action):
+            LP =int(Action[5:9])
+            P2.Decrease_Life_Points(LP)
+
+            # Set that this player is going 1st
+        if Action.lower() == 'Chose to go first'.lower():
+            P2.set_Going_First()
+
+#----------------------------------------------------------------------------------------------#
+
+    #Keep track of Turn Player until the end there turn
     if Turn_Player == 'Player1':
         ws1.cell(row + 1, 6, value=1)
         ws1.cell(row + 1, 7, value=0)
@@ -98,15 +141,28 @@ for row in range(1,Log_length+1):
             Turn_Player = 'Player1'
             Turn_Count += 1
 
-    #Current Game State
+            # Reset Stats for new match
+    if Action.lower() == 'Admitted defeat'.lower():
+        P1.new_match(P1Deck)
+        P2.new_match(P2Deck)
 
-    # Hand Size
+
+    #Current Game State
+        # Hand Size
     ws1.cell(row + 1, 8, value=P1.Hand_Size)
     ws1.cell(row + 1, 9, value=P2.Hand_Size)
 
-    # Deck Size
-    ws1.cell(row + 1, 8, value=P1.Deck_Size)
-    ws1.cell(row + 1, 9, value=P2.Deck_Size)
+        # Deck Size
+    ws1.cell(row + 1, 10, value=P1.Deck_Size)
+    ws1.cell(row + 1, 11, value=P2.Deck_Size)
+
+        # Life Points
+    ws1.cell(row + 1, 26, value=P1.Life_Points)
+    ws1.cell(row + 1, 27, value=P2.Life_Points)
+
+        # Going First
+    ws1.cell(row + 1, 28, value=P1.Went_First)
+    ws1.cell(row + 1, 29, value=P2.Went_First)
 
 # Save the file
 wb.save("Db_Test.xlsx")

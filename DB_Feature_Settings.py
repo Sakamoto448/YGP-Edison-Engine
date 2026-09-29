@@ -10,7 +10,7 @@ def Add_Feature_Headers():
     'Highest_Atk_P1','Highest_Atk_P2',
     'S/T_on_Field_P1','S/T_on_Field_P2',
     'Face_up_S/T_P1','Face_up_S/T_P2',
-    'Total_Atk_on_Field_P1','Total_Atk_on_Field_P2']
+    'Total_Atk_on_Field_P1','Total_Atk_on_Field_P2','P1_LP','P2_LP','P1First','P2First']
     return Feature_Names
 
 
